@@ -1,2 +1,2 @@
-flutter new practica_x <-- crear proyecto
+flutter create practica_x <-- crear proyecto
 flutter run <-- correr el proyecto xd
