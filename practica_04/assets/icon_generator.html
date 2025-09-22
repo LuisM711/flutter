@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>App Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .icon-container {
+            width: 512px;
+            height: 512px;
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            border-radius: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            margin: 20px auto;
+        }
+        .icon-text {
+            color: white;
+            font-size: 120px;
+            font-weight: bold;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .instructions {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .download-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .download-btn:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Practica 04 - App Icon Generator</h1>
+    
+    <div class="icon-container">
+        <div class="icon-text">P4</div>
+    </div>
+    
+    <div class="instructions">
+        <h2>Instrucciones para crear el icono de la app:</h2>
+        <ol>
+            <li>Haz clic derecho en el icono azul de arriba</li>
+            <li>Selecciona "Guardar imagen como..."</li>
+            <li>Guárdalo como "app_icon.png" en la carpeta assets/</li>
+            <li>O usa las herramientas online como:</li>
+            <ul>
+                <li><a href="https://appicon.co/" target="_blank">App Icon Generator</a></li>
+                <li><a href="https://icon.kitchen/" target="_blank">Icon Kitchen</a></li>
+                <li><a href="https://makeappicon.com/" target="_blank">Make App Icon</a></li>
+            </ul>
+        </ol>
+        
+        <h3>Alternativa: Usar el icono por defecto de Flutter</h3>
+        <p>Si no quieres crear un icono personalizado, puedes comentar la configuración de flutter_launcher_icons en pubspec.yaml y usar el icono por defecto.</p>
+        
+        <h3>Comandos para generar iconos:</h3>
+        <code style="background: #f5f5f5; padding: 10px; display: block; border-radius: 5px;">
+            flutter pub get<br>
+            flutter pub run flutter_launcher_icons:main
+        </code>
+    </div>
+
+    <script>
+        // Función para descargar el icono (requiere canvas)
+        function downloadIcon() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            
+            // Crear gradiente
+            const gradient = ctx.createLinearGradient(0, 0, 512, 512);
+            gradient.addColorStop(0, '#2196F3');
+            gradient.addColorStop(1, '#1976D2');
+            
+            // Dibujar fondo
+            ctx.fillStyle = gradient;
+            ctx.roundRect(0, 0, 512, 512, 102);
+            ctx.fill();
+            
+            // Dibujar texto
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 120px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.shadowBlur = 8;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 2;
+            ctx.fillText('P4', 256, 256);
+            
+            // Descargar
+            const link = document.createElement('a');
+            link.download = 'app_icon.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Agregar botón de descarga
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.createElement('button');
+            btn.textContent = 'Descargar Icono (512x512)';
+            btn.className = 'download-btn';
+            btn.style.display = 'block';
+            btn.style.margin = '20px auto';
+            btn.onclick = downloadIcon;
+            document.querySelector('.icon-container').parentNode.insertBefore(btn, document.querySelector('.instructions'));
+        });
+    </script>
+</body>
+</html>
