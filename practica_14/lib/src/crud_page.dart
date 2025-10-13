@@ -23,7 +23,7 @@ class _CrudPageState extends State<CrudPage> {
       appBar: AppBar(
         title: Text('Practica 14 - SQLite'),
         centerTitle: true,
-      ), // AppBar
+      ), 
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +36,7 @@ class _CrudPageState extends State<CrudPage> {
               child: Text('INSERT'),
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green, foregroundColor: Colors.white),
-            ), // ElevatedButton
+            ), 
             ElevatedButton(
               onPressed: () {
                 _removeDB();
@@ -44,7 +44,7 @@ class _CrudPageState extends State<CrudPage> {
               child: Text('REMOVE'),
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red, foregroundColor: Colors.white),
-            ), // ElevatedButton
+            ), 
             ElevatedButton(
               onPressed: () {
                 _updateDB();
@@ -52,7 +52,7 @@ class _CrudPageState extends State<CrudPage> {
               child: Text('UPDATE'),
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue, foregroundColor: Colors.white),
-            ), // ElevatedButton
+            ), 
             ElevatedButton(
               onPressed: () {
                 _showDB();
@@ -60,7 +60,7 @@ class _CrudPageState extends State<CrudPage> {
               child: Text('SHOW'),
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber, foregroundColor: Colors.white),
-            ), // ElevatedButton
+            ), 
             SizedBox(height: 20),
             Container(
               padding: EdgeInsets.all(16),
@@ -77,12 +77,12 @@ class _CrudPageState extends State<CrudPage> {
               ),
             ),
           ],
-        ), // Column
-      ), // Center
-    ); // Scaffold
+        ), 
+      ), 
+    ); 
   }
 
-  // --- CREADO BD
+  
   void _createDB() async {
     var dbpath = await getDatabasesPath();
 
@@ -99,7 +99,7 @@ class _CrudPageState extends State<CrudPage> {
     });
   }
 
-  // -- INSERT DB
+  
   void _insertDB() async {
     await database.transaction((txn) async {
       await txn.rawInsert(
@@ -115,7 +115,7 @@ class _CrudPageState extends State<CrudPage> {
     });
   }
 
-  // -- REMOVE DB
+  
   void _removeDB() async {
     int rem = await database.rawDelete(
         'DELETE FROM Test WHERE name = ?', ['Grogu']);
@@ -125,7 +125,7 @@ class _CrudPageState extends State<CrudPage> {
     });
   }
 
-  // -- UPDATE DB
+  
   void _updateDB() async {
     int upt = await database.rawUpdate(
         'UPDATE Test SET nickname =? WHERE name = ?', ['Mando', 'Din Djarin']);
@@ -135,7 +135,7 @@ class _CrudPageState extends State<CrudPage> {
     });
   }
 
-  // -- SHOW DB
+  
   void _showDB() async {
     List<Map> show = await database.rawQuery('SELECT * FROM Test');
     
